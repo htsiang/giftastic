@@ -1,21 +1,30 @@
-.container {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-}
-
 #gif-buttons-here {
-    grid-column: span 12;
+    grid-area: header;
     margin-bottom: 15px;
 }
 
 #gifs-here {
-    grid-column: span 11;
+    grid-area: maintop;
+}
+
+#fav-gifs {
+    grid-area: mainbottom;
 }
 
 #search {
-    grid-column: span 1;
+    grid-area: menu;
     margin-right: 5px;
     margin-left: 20px;
+}
+
+.container {
+    display: grid;
+    grid-template-areas:
+        'header header header header header header'
+        'mainbottom mainbottom mainbottom mainbottom mainbottom menu'
+        'maintop maintop maintop maintop maintop menu';
+        grid-gap: 10px;
+        padding: 10px;
 }
 
 button {

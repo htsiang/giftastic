@@ -55,7 +55,7 @@ function showGifs() {
     $(".gif-button").on("click", function() {
         console.log("click");
         // clear previous gifs
-        $("#gifs-here").html("");
+        $(".gif-div").remove();
 
         // get value of button that was clicked
         var searchWord = $(this).val();
@@ -84,15 +84,21 @@ function showGifs() {
                                         "data-animated": response.data[i].images.fixed_height.url});
                 // dynamically create element to store gif rating & set text to rating
                 var gifRating = $("<p>", {class: "gif-rating", text: "Rating: " + response.data[i].rating});
+                var addFavorite = $("<p>", {class: "add-favorite",
+                                        text: "Add to Favorites",
+                                        "link-still": response.data[i].images.fixed_height_still.url,
+                                        "link-animated": response.data[i].images.fixed_height.url,
+                                        "link-rating": response.data[i].rating});
 
                 // append image & rating to overarching div
-                gifDiv.append(gifRating, gifImage);
+                gifDiv.append(gifRating, addFavorite, gifImage);
 
                 // append overarching div to static element on html page
                 $("#gifs-here").append(gifDiv);
             };
 
             animatedStillGifs();
+            addToFavorites();
         });
     });
 };
@@ -114,3 +120,21 @@ function animatedStillGifs () {
         };
     });
 };
+
+function addToFavorites() {
+    $(".add-favorite").on("click", function() {
+        console.log("add to favorite clicked");
+
+        var favoriteGIF = $("<div>");
+        var favoriteGIFImage = $("<img>", {src: $(this).attr("link-still"),
+                                        class: "gif-image",
+                                        "state": "still",
+                                        "data-still": $(this).attr("link-still"),
+                                        "data-animated": $(this).attr("link-animated")});
+        var favoriteGIFRating = $("<p>", {text: $(this).attr("link-rating")});
+
+        favoriteGIF.append(favoriteGIFRating, favoriteGIFImage);
+
+        $("#fav-gifs").append(favoriteGIF);
+    })
+}
