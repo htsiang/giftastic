@@ -1,0 +1,43 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+#gif-buttons-here {
+    grid-column: span 12;
+    margin-bottom: 15px;
+}
+
+#gifs-here {
+    grid-column: span 11;
+}
+
+#search {
+    grid-column: span 1;
+    margin-right: 5px;
+    margin-left: 20px;
+}
+
+button {
+    background-color: teal;
+    color: white;
+    border: 0;
+    border-radius: 3px;
+    margin: 5px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+label {
+    font-weight: bold;
+}
+
+.gif-div {
+    float: left;
+    margin: 5px;
+}
+
+.gif-rating {
+    margin-bottom: 10px;
+}
